@@ -64,7 +64,8 @@ class OverrideInstall(install):
         dir_path = self.install_data
         mode = 0o777
         install.run(self)
-
+        
+        # Added and not (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix) to support Virtual Enviroments in Python 3.X for the logging.yml export
         if 'win32' not in sys.platform and not hasattr(sys, 'real_prefix') and not (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix):
             dir_mode = 0o755
             file_mode = 0o644
